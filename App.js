@@ -1,20 +1,30 @@
+import { MainProvider } from './src/contexts/MainContext';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { PaperProvider } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import QuizScreen from './src/views/QuizView';
+import Header from './src/components/core/Header';
+import { StyleSheet, View } from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <PaperProvider>
+      <SafeAreaProvider>
+        <MainProvider>
+          <View style={styles.container}>
+                <Header headerTitle={'Heartburn checker'}/>
+                <QuizScreen />
+          </View>
+        </MainProvider>
+      </SafeAreaProvider>
       <StatusBar style="auto" />
-    </View>
+    </PaperProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 20
   },
 });
